@@ -9,43 +9,43 @@ function ListNewProduct() {
       id: 1,
       imageUrl: Batik,
       title: "Batik",
-      desc: "Batik",
+      price: "Rp 100.000",
     },
     {
       id: 2,
       imageUrl: Batik,
       title: "Batik",
-      desc: "Batik",
+      price: "Rp 100.000",
     },
     {
       id: 3,
       imageUrl: Batik,
       title: "Batik",
-      desc: "Batik",
+      price: "Rp 100.000",
     },
     {
       id: 4,
       imageUrl: Batik,
       title: "Batik",
-      desc: "Batik",
+      price: "Rp 100.000",
     },
     {
       id: 5,
       imageUrl: Batik,
       title: "Batik",
-      desc: "Batik",
+      price: "Rp 100.000",
     },
     {
       id: 6,
       imageUrl: Batik,
       title: "Batik",
-      desc: "Batik",
+      price: "Rp 100.000",
     },
     {
       id: 7,
       imageUrl: Batik,
       title: "Batik",
-      desc: "Batik",
+      price: "Rp 100.000",
     },
   ]);
 
@@ -59,7 +59,7 @@ function ListNewProduct() {
               key={item.id}
               image={item.imageUrl}
               title={item.title}
-              description={item.desc}
+              price={item.price}
             />
           );
         })}
