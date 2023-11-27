@@ -9,6 +9,7 @@ import Kemeja from "../../assets/kemeja.png";
 import Pants from "../../assets/pants.png";
 import Skirt from "../../assets/skirt.png";
 import "./ListCategory.css";
+import { Container } from "react-bootstrap";
 
 function ListCategory() {
   const [category, setCategory] = useState([
@@ -55,9 +56,13 @@ function ListCategory() {
   ]);
 
   return (
-    <div className="container">
+    <Container
+      style={{
+        padding: 22,
+      }}
+    >
       <h2>Kategori</h2>
-      <div className="category-container d-flex p-3">
+      <div className="category-container d-flex md-p-3">
         {category.map((item) => (
           <Category
             key={item.id}
@@ -66,7 +71,7 @@ function ListCategory() {
           />
         ))}
       </div>
-    </div>
+    </Container>
   );
 }
 

@@ -1,6 +1,7 @@
 import Batik from "../../assets/batik.png";
 import { useState } from "react";
 import NewProduct from "./NewProduct";
+import { Container } from "react-bootstrap";
 
 function ListNewProduct() {
   const [newProduct, setNewProduct] = useState([
@@ -49,7 +50,7 @@ function ListNewProduct() {
   ]);
 
   return (
-    <div className="container">
+    <Container style={{ padding: 22 }}>
       <h2>Produk Terbaru</h2>
       <div className="category-container d-flex p-3">
         {newProduct.map((item) => {
@@ -63,7 +64,7 @@ function ListNewProduct() {
           );
         })}
       </div>
-    </div>
+    </Container>
   );
 }
 
