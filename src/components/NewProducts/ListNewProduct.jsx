@@ -2,6 +2,7 @@ import Batik from "../../assets/batik.png";
 import { useState } from "react";
 import NewProduct from "./NewProduct";
 import { Container } from "react-bootstrap";
+import "./nweproduct.css";
 
 function ListNewProduct() {
   const [newProduct, setNewProduct] = useState([
@@ -52,7 +53,7 @@ function ListNewProduct() {
   return (
     <Container style={{ padding: 22 }}>
       <h2>Produk Terbaru</h2>
-      <div className="category-container d-flex p-3">
+      <div className="detail-product-container d-flex p-3">
         {newProduct.map((item) => {
           return (
             <NewProduct

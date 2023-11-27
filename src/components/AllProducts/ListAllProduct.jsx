@@ -51,7 +51,7 @@ function ListAllProduct() {
 
   return (
     <Container style={{ padding: 22 }}>
-      <h2>Produk Terbaru</h2>
+      <h2>Semua Produk</h2>
       <Row className="flex-wrap">
         {allProducts.map((item) => (
           <Col key={item.id} md={6} lg={3} className="p-3">
