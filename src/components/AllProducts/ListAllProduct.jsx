@@ -54,7 +54,7 @@ function ListAllProduct() {
       <h2>Produk Terbaru</h2>
       <Row className="flex-wrap">
         {allProducts.map((item) => (
-          <Col key={item.id} xs={12} sm={6} md={4} lg={3} className="p-3">
+          <Col key={item.id} md={6} lg={3} className="p-3">
             <AllProduct
               image={item.imageUrl}
               title={item.title}
