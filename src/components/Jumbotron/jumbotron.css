@@ -1,0 +1,22 @@
+/* Jumbotron.css */
+
+.jumbotron-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 38vh; /* Sesuaikan tinggi container sesuai kebutuhan, 70vh untuk 70% dari tinggi viewport */
+  overflow: hidden; /* Menghindari gambar keluar dari container jika gambar sangat besar */
+}
+
+.hero-image {
+  width: 88%;
+  height: auto; /* Menggunakan lebar penuh tetapi menjaga aspek gambar */
+  border-radius: 10px; /* Tambahkan gaya tambahan sesuai kebutuhan */
+}
+
+@media (max-width: 768px) {
+  /* Gaya untuk layar dengan lebar maksimum 768px (layar kecil) */
+  .jumbotron-container {
+    height: 20vh; /* Sesuaikan tinggi container sesuai kebutuhan */
+  }
+}

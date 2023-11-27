@@ -1,0 +1,20 @@
+@media (max-width: 768px) {
+  .category-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .rounded-circle {
+    margin: 8px;
+  }
+
+  .category-img {
+    width: 40px;
+  }
+
+  .category-list {
+    width: 80px;
+    height: 80px;
+    background-color: "rgb(214, 48, 49)";
+  }
+}
