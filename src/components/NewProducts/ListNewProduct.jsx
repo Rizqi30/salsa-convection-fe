@@ -3,6 +3,7 @@ import { useState } from "react";
 import NewProduct from "./NewProduct";
 import { Container } from "react-bootstrap";
 import "./nweproduct.css";
+import { Link } from "react-router-dom";
 
 function ListNewProduct() {
   const [newProduct, setNewProduct] = useState([
@@ -56,12 +57,13 @@ function ListNewProduct() {
       <div className="detail-product-container d-flex p-3">
         {newProduct.map((item) => {
           return (
-            <NewProduct
-              key={item.id}
-              image={item.imageUrl}
-              title={item.title}
-              price={item.price}
-            />
+            <Link to={"/" + item.id} key={item.id}>
+              <NewProduct
+                image={item.imageUrl}
+                title={item.title}
+                price={item.price}
+              />
+            </Link>
           );
         })}
       </div>

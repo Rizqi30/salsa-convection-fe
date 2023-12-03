@@ -1,22 +1,18 @@
-import NavItem from "./components/NavItem/NavItem";
-import Jumbotron from "./components/Jumbotron/Jumbotron";
-import ListCategory from "./components/ListCategory/ListCategory";
-import ListNewProduct from "./components/NewProducts/ListNewProduct";
-import ListAllProduct from "./components/AllProducts/ListAllProduct";
-import Footer from "./components/Footer/Footer";
+import { Route, Routes } from "react-router-dom";
+import Homepages from "./pages/Homepages";
 import DetailProduct from "./components/DetailProducts/DetailProducts";
+import NavbarFooter from "./pages/NavbarFooter";
 
 function App() {
   return (
-    <div>
-      <NavItem />
-      <Jumbotron />
-      <ListCategory />
-      <ListNewProduct />
-      <ListAllProduct />
-      <Footer />
-      <DetailProduct />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<NavbarFooter />}>
+          <Route index element={<Homepages />} />
+          <Route path=":id" element={<DetailProduct />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 

@@ -2,6 +2,7 @@ import Batik from "../../assets/batik.png";
 import { useState } from "react";
 import AllProduct from "./AllProduct";
 import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function ListAllProduct() {
   const [allProducts, setAllProducts] = useState([
@@ -55,11 +56,13 @@ function ListAllProduct() {
       <Row className="flex-wrap">
         {allProducts.map((item) => (
           <Col key={item.id} md={6} lg={3} className="p-3">
-            <AllProduct
-              image={item.imageUrl}
-              title={item.title}
-              price={item.price}
-            />
+            <Link to={"/" + item.id}>
+              <AllProduct
+                image={item.imageUrl}
+                title={item.title}
+                price={item.price}
+              />
+            </Link>
           </Col>
         ))}
       </Row>
