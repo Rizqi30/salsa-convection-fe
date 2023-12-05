@@ -15,7 +15,10 @@ const Footer = () => {
   return (
     <>
       {screenWidth >= 768 ? (
-        <footer className=" text-light py-4" style={{ background: " #d63031" }}>
+        <footer
+          className=" text-light py-4"
+          style={{ background: " #d63031", marginTop: "2rem" }}
+        >
           <Container>
             <div className="d-flex justify-content-between">
               <div>
@@ -64,7 +67,7 @@ const Footer = () => {
       ) : (
         <footer
           className="text-light py-4"
-          style={{ background: " #d63031", height: "35rem" }}
+          style={{ background: " #d63031", height: "auto", marginTop: "2rem" }}
         >
           <Container>
             <Row>

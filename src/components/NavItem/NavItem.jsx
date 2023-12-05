@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import InputGroup from "react-bootstrap/InputGroup";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import { MdMessage } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 function NavItem() {
   const [screenWidth, setScreenWidth] = useState();
@@ -21,8 +22,17 @@ function NavItem() {
     <Navbar expand="lg" style={{ padding: "10px", background: " #d63031" }}>
       <Container fluid className={screenWidth >= 992 ? "mx-5" : null}>
         {screenWidth >= 992 && (
-          <Navbar.Brand href="#" style={{ fontSize: "28px", color: "#ffffff" }}>
-            Salsa Convection
+          <Navbar.Brand>
+            <Link
+              to={"/"}
+              style={{
+                fontSize: "28px",
+                color: "#ffffff",
+                textDecoration: "none",
+              }}
+            >
+              Salsa Convection
+            </Link>
           </Navbar.Brand>
         )}
 
@@ -69,26 +79,40 @@ function NavItem() {
             navbarScroll
           >
             {screenWidth < 992 && (
-              <Nav.Link
-                href="#action2"
-                style={{ color: "#ffffff", fontSize: "23px" }}
+              <Link
+                to={"/"}
+                style={{
+                  color: "#ffffff",
+                  fontSize: "23px",
+                  textDecoration: "none",
+                }}
               >
                 Salsa Convection
-              </Nav.Link>
+              </Link>
             )}
 
-            <Nav.Link
-              href="#action2"
-              style={{ color: "#ffffff", fontSize: "20px" }}
+            <Link
+              to={"/daftar"}
+              className="me-3"
+              style={{
+                color: "#ffffff",
+                fontSize: "20px",
+                textDecoration: "none",
+              }}
             >
               Daftar
-            </Nav.Link>
-            <Nav.Link
-              href="#action3"
-              style={{ color: "#ffffff", fontSize: "20px" }}
+            </Link>
+
+            <Link
+              to={"/login"}
+              style={{
+                color: "#ffffff",
+                fontSize: "20px",
+                textDecoration: "none",
+              }}
             >
               Login
-            </Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
