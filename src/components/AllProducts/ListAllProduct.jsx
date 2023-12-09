@@ -1,54 +1,24 @@
 import Batik from "../../assets/batik.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AllProduct from "./AllProduct";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function ListAllProduct() {
-  const [allProducts, setAllProducts] = useState([
-    {
-      id: 1,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-    {
-      id: 2,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-    {
-      id: 3,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-    {
-      id: 4,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-    {
-      id: 5,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-    {
-      id: 6,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-    {
-      id: 7,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-  ]);
+  const [allProducts, setAllProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/products")
+      .then((response) => {
+        setAllProducts(response.data.data);
+        console.log(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <Container style={{ padding: 22 }}>
@@ -58,7 +28,7 @@ function ListAllProduct() {
           <Col key={item.id} md={6} lg={3} className="p-3">
             <Link to={"/" + item.id}>
               <AllProduct
-                image={item.imageUrl}
+                image={"http://127.0.0.1:8000/images/" + item.img}
                 title={item.title}
                 price={item.price}
               />
