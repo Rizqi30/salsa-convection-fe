@@ -1,9 +1,32 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../config/Redux/Action/authAction";
 
 const Login = () => {
   const [screenWidth, setScreenWidth] = useState();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const dispatch = useDispatch();
+
+  const nav = useNavigate(); // untuk menuju ke home setelah login
+
+  // Cek token apakah sudah diisi
+  const { token } = useSelector((state) => state.authReducer);
+  console.log(token);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(formData, nav)); // tambah nav
+  };
 
   useEffect(() => {
     setScreenWidth(window.innerWidth);
@@ -34,13 +57,15 @@ const Login = () => {
               </div>
             )}
             <div className="bg-white p-3 px-4 login-container mx-4 rounded">
-              <h2 className="text-center mb-4">Login</h2>
-              <form>
+              <h2 className="text-center mb-4">Selamat Datang</h2>
+              <form onSubmit={handleSubmit}>
                 <div className="mb-2">
                   <label htmlFor="exampleInputEmail1" className="form-label">
                     Email
                   </label>
                   <input
+                    name="email"
+                    onChange={handleChange}
                     style={{ width: "23rem" }}
                     type="email"
                     className="form-control"
@@ -52,6 +77,8 @@ const Login = () => {
                     Password
                   </label>
                   <input
+                    name="password"
+                    onChange={handleChange}
                     type="password"
                     className="form-control"
                     id="exampleInputPassword1"
@@ -62,7 +89,7 @@ const Login = () => {
                 </p>
                 <div className="d-flex justify-content-center ">
                   <button type="submit" className="btn btn-primary">
-                    Selamat Datang
+                    Login
                   </button>
                 </div>
               </form>
@@ -76,12 +103,14 @@ const Login = () => {
             <div className={`${screenWidth >= 768 ? "w-25 mx-4" : "w-100 "}`}>
               <div className="bg-white p-3 px-4 login-container mx-4 rounded">
                 <h2 className="text-center mb-4">Selamat Datang</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="mb-2">
                     <label htmlFor="exampleInputEmail1" className="form-label">
-                      Email address
+                      Email
                     </label>
                     <input
+                      name="email"
+                      onChange={handleChange}
                       style={{ width: "100%" }}
                       type="email"
                       className="form-control"
@@ -96,6 +125,8 @@ const Login = () => {
                       Password
                     </label>
                     <input
+                      name="password"
+                      onChange={handleChange}
                       style={{ width: "100%" }}
                       type="password"
                       className="form-control"

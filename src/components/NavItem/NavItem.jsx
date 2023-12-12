@@ -7,9 +7,21 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import { MdMessage } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
+import { logout } from "../../config/Redux/Action/authAction";
 
 function NavItem() {
   const [screenWidth, setScreenWidth] = useState();
+  const dispatch = useDispatch(); // useDispatch() digunakan untuk mengirim action ke reducer
+  const token = localStorage.getItem("token");
+
+  const { user } = useSelector((state) => state.authReducer); // mendapatkan data
+  console.log(user);
+
+  const handleLogout = () => {
+    dispatch(logout(token));
+  };
 
   useEffect(() => {
     setScreenWidth(window.innerWidth);
@@ -103,16 +115,32 @@ function NavItem() {
               Daftar
             </Link>
 
-            <Link
-              to={"/login"}
-              style={{
-                color: "#ffffff",
-                fontSize: "20px",
-                textDecoration: "none",
-              }}
-            >
-              Login
-            </Link>
+            {user.name ? ( // untuk logout set user kosong di action
+              <Link
+                className="me-3"
+                style={{
+                  color: "#ffffff",
+                  fontSize: "20px",
+                  textDecoration: "none",
+                }}
+              >
+                <Button variant="warning" onClick={() => handleLogout()}>
+                  Logout
+                </Button>
+              </Link>
+            ) : (
+              <Link
+                to={"/login"}
+                className="me-3"
+                style={{
+                  color: "#ffffff",
+                  fontSize: "20px",
+                  textDecoration: "none",
+                }}
+              >
+                <Button variant="light">Login</Button>
+              </Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -10,9 +10,9 @@ function Admin() {
         <div className="col-2 bg-white vh-100">
           <SideBar />
         </div>
-        <div className="col-auto">
-          <Home />
-        </div>
+      </div>
+      <div className="col-auto">
+        <Home />
       </div>
     </div>
   );

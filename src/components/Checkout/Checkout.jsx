@@ -9,11 +9,12 @@ const MidtransPayment = () => {
       total: 20000,
       status: "Unpaid",
     });
-    console.log(res.data.data);
 
-    const snapToken = res.data.data; // Isi dengan snap token yang didapatkan dari server Anda
+    const snapToken = res.data.token;
 
-    window.snap.pay(snapToken);
+    window.snap.embed(snapToken, {
+      embedId: "snap-container",
+    });
   };
 
   return (
