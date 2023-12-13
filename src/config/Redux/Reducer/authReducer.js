@@ -11,11 +11,13 @@ const authReducer = (state = initialState, action) => {
         ...state,
         token: action.payload,
       };
+
     case "SET_REGISTER_INFO":
       return {
         ...state,
         registerInfo: action.payload, // menampung data
       };
+
     case "SET_USER": // Untuk mendapatkan data kita
       return {
         ...state,

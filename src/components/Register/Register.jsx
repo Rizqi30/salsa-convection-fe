@@ -129,7 +129,7 @@ const Login = () => {
                   label="Confirm Password"
                 >
                   <Form.Control
-                    type="text"
+                    type="password"
                     placeholder="ConfirmPassword"
                     required
                   />
@@ -225,7 +225,7 @@ const Login = () => {
                     label="Confirm Password"
                   >
                     <Form.Control
-                      type="text"
+                      type="password"
                       placeholder="ConfirmPassword"
                       required
                     />
