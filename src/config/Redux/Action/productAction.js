@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const index = ($data) => {
+export const indexProducts = ($data) => {
   // Tampilkan seluruh product
   return async (dispatch) => {
     try {
@@ -9,30 +9,29 @@ export const index = ($data) => {
         $data
       );
       console.log(res);
-      dispatch({ type: "FETCH_ALL_PRODUCTS", payload: res.data });
+      dispatch({ type: "FETCH_ALL_PRODUCTS", payload: res.data.data });
     } catch (err) {
       console.log(err);
     }
   };
 };
 
-export const show = ($data) => {
+export const showProductById = (id) => {
   // Tampilkan product by Id
   return async (dispatch) => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}api/products/{id}`,
-        $data
+        `${import.meta.env.VITE_API_URL}/api/products/${id}`
       );
       console.log(res);
-      dispatch({ type: "SHOW_PRODUCT_BY_ID", payload: res.data });
+      dispatch({ type: "GET_PRODUCT_BY_ID", payload: res.data.data });
     } catch (err) {
       console.log(err);
     }
   };
 };
 
-export const store = ($data) => {
+export const storeProducts = ($data) => {
   // Menambah product
   return async (dispatch) => {
     try {
@@ -48,7 +47,7 @@ export const store = ($data) => {
   };
 };
 
-export const update = ($data) => {
+export const updateProductsById = ($data) => {
   // Update product
   return async (dispatch) => {
     try {
@@ -64,7 +63,7 @@ export const update = ($data) => {
   };
 };
 
-export const destroy = ($data) => {
+export const destroyProductsById = ($data) => {
   // Delete product
   return async (dispatch) => {
     try {

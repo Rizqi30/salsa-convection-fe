@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Batik from "../../assets/batik.png";
 import ProductDescription from "./ProductDescription";
+import { useDispatch, useSelector } from "react-redux";
+import { showProductById } from "../../config/Redux/Action/productAction";
+import { useParams } from "react-router-dom";
 
 const DetailProduct = () => {
-  const [selectedSize, setSelectedSize] = useState("M");
+  const [selectedSize, setSelectedSize] = useState("S");
   const [selectedColor, setSelectedColor] = useState("Blue");
   const [quantity, setQuantity] = useState(1);
+
+  const dispatch = useDispatch();
+
+  const { productById } = useSelector((state) => state.productReducer);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(showProductById(id));
+  }, [dispatch, id]);
 
   const handleSizeChange = (size) => {
     setSelectedSize(size);
@@ -15,6 +28,7 @@ const DetailProduct = () => {
   const handleColorChange = (color) => {
     setSelectedColor(color);
   };
+  console.log(productById);
 
   const handleQuantityChange = (change) => {
     setQuantity((prevQuantity) => Math.max(1, prevQuantity + change));
@@ -46,11 +60,11 @@ const DetailProduct = () => {
       >
         <Row>
           <Col md={6}>
-            <img src={Batik} alt="Product" className="img-fluid" />
+            <img src={productById.img} alt="Product" className="img-fluid" />
           </Col>
           <Col md={6}>
-            <h3>Product Name</h3>
-            <h2 className="my-4">Harga: Rp 100.000</h2>
+            <h3>{productById.name}</h3>
+            <h2 className="my-4">Harga: Rp {productById.price}</h2>
 
             <h5 className="mb-3">Pilih Size</h5>
             <div className="mb-4">
@@ -137,7 +151,7 @@ const DetailProduct = () => {
           </Col>
         </Row>
       </Container>
-      <ProductDescription />
+      <ProductDescription desc={productById.description} />
     </>
   );
 };

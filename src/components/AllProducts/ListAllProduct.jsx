@@ -3,22 +3,19 @@ import { useEffect, useState } from "react";
 import AllProduct from "./AllProduct";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { indexProducts } from "../../config/Redux/Action/productAction";
 
 function ListAllProduct() {
-  const [allProducts, setAllProducts] = useState([]);
+  const dispatch = useDispatch();
+
+  const { allProducts } = useSelector((state) => state.productReducer);
 
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/api/products")
-      .then((response) => {
-        setAllProducts(response.data.data);
-        console.log(response.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    dispatch(indexProducts()); // indexPorducts didapat dari productAction
+  }, [dispatch]);
+
+  console.log(allProducts);
 
   return (
     <Container style={{ padding: 22 }}>
@@ -29,7 +26,7 @@ function ListAllProduct() {
             <Link to={"/" + item.id}>
               <AllProduct
                 image={"http://127.0.0.1:8000/images/" + item.img}
-                title={item.title}
+                title={item.name}
                 price={item.price}
               />
             </Link>

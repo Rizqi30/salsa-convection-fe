@@ -12,10 +12,10 @@ const productReducer = (state = initialState, action) => {
         allProducts: action.payload,
       };
 
-    case "SHOW_PRODUCT_BY_ID":
+    case "GET_PRODUCT_BY_ID":
       return {
         ...state,
-        selectedProduct: action.payload,
+        productById: action.payload,
       };
 
     case "ADD_PRODUCT":

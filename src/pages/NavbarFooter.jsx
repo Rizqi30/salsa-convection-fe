@@ -12,7 +12,10 @@ const NavbarFooter = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    dispatch(me(token));
+    if (token) {
+      // CEK APAKAH ADA TOKEN
+      dispatch(me(token));
+    }
   }, [dispatch, token]);
 
   return (

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect } from "react";
+import { Col, Row } from "react-bootstrap";
 
 const MidtransPayment = () => {
   const handlePayment = async () => {
@@ -18,12 +19,16 @@ const MidtransPayment = () => {
   };
 
   return (
-    <div>
-      <button id="pay-button" onClick={handlePayment}>
-        Pay!
-      </button>
-      <div id="snap-container"></div>
-    </div>
+    <Row>
+      <h1>Payment</h1>
+      <Col md={6}>
+        <button id="pay-button" onClick={handlePayment}>
+          Pay!
+        </button>
+        <div id="snap-container"></div>
+      </Col>
+      <Col md={6}></Col>
+    </Row>
   );
 };
 
