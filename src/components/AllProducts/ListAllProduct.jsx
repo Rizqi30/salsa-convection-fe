@@ -11,6 +11,13 @@ function ListAllProduct() {
 
   const { allProducts } = useSelector((state) => state.productReducer);
 
+  const formatPriceInRupiah = (price) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(price);
+  };
+
   useEffect(() => {
     dispatch(indexProducts()); // indexPorducts didapat dari productAction
   }, [dispatch]);
@@ -23,11 +30,11 @@ function ListAllProduct() {
       <Row className="flex-wrap">
         {allProducts.map((item) => (
           <Col key={item.id} md={6} lg={3} className="p-3">
-            <Link to={"/" + item.id}>
+            <Link to={"/" + item.id} className="text-decoration-none">
               <AllProduct
                 image={"http://127.0.0.1:8000/images/" + item.img}
                 title={item.name}
-                price={item.price}
+                price={formatPriceInRupiah(item.price)}
               />
             </Link>
           </Col>

@@ -62,13 +62,14 @@ function NavItem() {
             <FaSearch />
           </InputGroup.Text>
         </InputGroup>
-        <Nav.Link
+        <Link
           className="mx-2"
           href="#action1"
           style={{ color: "#ffffff", fontSize: "23px" }}
+          to={"/cart"}
         >
           <FaShoppingCart />
-        </Nav.Link>
+        </Link>
         {screenWidth >= 992 && (
           <Nav.Link
             href="#action1"
