@@ -9,6 +9,9 @@ import Checkout from "./components/Checkout/Checkout";
 import CartDetail from "./components/Cart/CartDetail";
 import { Provider } from "react-redux";
 import { store } from "./config/index";
+import "react-tooltip/dist/react-tooltip.css";
+import CheckoutList from "./components/Checkout/CheckoutList";
+import CheckoutOrder from "./components/Checkout/CheckoutOrder";
 
 function App() {
   return (
@@ -19,10 +22,12 @@ function App() {
             <Route index element={<Homepages />} />
             <Route path=":id" element={<DetailProduct />} />
             <Route path="cart" element={<CartDetail />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout-list" element={<CheckoutList />} />
+            <Route path="/order/:id" element={<CheckoutOrder />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/daftar" element={<Register />} />
-          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Provider>
     </>

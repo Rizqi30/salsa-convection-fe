@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCarts, getCarts } from "../../config/Redux/Action/cartAction";
+import { useNavigate } from "react-router-dom";
 
 const CartDetail = () => {
   const dispatch = useDispatch();
+  const nav = useNavigate();
   const { cart } = useSelector((state) => state.cartReducer);
   const [refresh, setRefresh] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -31,6 +33,10 @@ const CartDetail = () => {
     return selectedItems.reduce((total, currentItem) => {
       return total + parseInt(currentItem.price);
     }, 0);
+  };
+
+  const handleCheckout = () => {
+    nav("/checkout", { state: { selectedItems } });
   };
 
   const handleDeleteCart = (id) => {
@@ -105,7 +111,7 @@ const CartDetail = () => {
       <hr />
       <div className="d-flex justify-content-end">
         <h3 className="mx-3">Total: {formatPriceInRupiah(getTotalPrice())}</h3>
-        <Button variant="danger" className="float-end">
+        <Button variant="danger" className="float-end" onClick={handleCheckout}>
           Checkout
         </Button>
       </div>
