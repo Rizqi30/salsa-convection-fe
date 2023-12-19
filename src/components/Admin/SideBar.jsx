@@ -1,38 +1,68 @@
-function SideBar() {
+import {
+  BsCart3,
+  BsGrid1X2Fill,
+  BsFillArchiveFill,
+  BsFillGrid3X3GapFill,
+  BsPeopleFill,
+  BsListCheck,
+  BsMenuButtonWideFill,
+  BsFillGearFill,
+} from "react-icons/bs";
+import { Link } from "react-router-dom";
+
+function SideBar({ openSidebarToggle, OpenSidebar }) {
   return (
-    <div className="bg-white sidebar p-2">
-      <div className="m-2">
-        <i className="bi bi-bootstrap-fill me-3 fs-4"></i>
-        <span className="brand-name fs-4">Rizqi</span>
+    <aside
+      id="sidebar"
+      className={openSidebarToggle ? "sidebar-responsive" : ""}
+    >
+      <div className="sidebar-title">
+        <div className="sidebar-brand">
+          <BsCart3 className="icon_header" /> SHOP
+        </div>
+        <span className="icon close_icon" onClick={OpenSidebar}>
+          X
+        </span>
       </div>
-      <hr className="text-dark" />
-      <div className="list-group list-group-flush">
-        <a className="list-group-item py-2">
-          <i className="bi bi-speedometer2 fs-5 me-3"></i>
-          <span className="fs-5">Dashboard</span>
-        </a>
-        <a className="list-group-item py-2">
-          <i className="bi bi-house fs-5 me-3"></i>
-          <span className="fs-5">Home</span>
-        </a>
-        <a className="list-group-item py-2">
-          <i className="bi bi-table fs-5 me-3"></i>
-          <span className="fs-5">Products</span>
-        </a>
-        <a className="list-group-item py-2">
-          <i className="bi bi-clipboard-data fs-5 me-3"></i>
-          <span className="fs-5">Report</span>
-        </a>
-        <a className="list-group-item py-2">
-          <i className="bi bi-people fs-5 me-3"></i>
-          <span className="fs-5">Customer</span>
-        </a>
-        <a className="list-group-item py-2">
-          <i className="bi bi-power fs-5 me-3"></i>
-          <span className="fs-5">Logout</span>
-        </a>
-      </div>
-    </div>
+
+      <ul className="sidebar-list">
+        <li className="sidebar-list-item">
+          <a href="">
+            <BsGrid1X2Fill className="icon" /> Dashboard
+          </a>
+        </li>
+        <li className="sidebar-list-item">
+          <Link to="/admin">
+            <BsFillArchiveFill className="icon" /> Products
+          </Link>
+        </li>
+        <li className="sidebar-list-item">
+          <a href="">
+            <BsFillGrid3X3GapFill className="icon" /> Categories
+          </a>
+        </li>
+        <li className="sidebar-list-item">
+          <a href="">
+            <BsPeopleFill className="icon" /> Customers
+          </a>
+        </li>
+        <li className="sidebar-list-item">
+          <a href="">
+            <BsListCheck className="icon" /> Inventory
+          </a>
+        </li>
+        <li className="sidebar-list-item">
+          <a href="">
+            <BsMenuButtonWideFill className="icon" /> Reports
+          </a>
+        </li>
+        <li className="sidebar-list-item">
+          <a href="">
+            <BsFillGearFill className="icon" /> Setting
+          </a>
+        </li>
+      </ul>
+    </aside>
   );
 }
 

@@ -31,15 +31,31 @@ export const showProductById = (id) => {
   };
 };
 
-export const storeProducts = ($data) => {
+export const storeProducts = ($data, image, navigate) => {
   // Menambah product
   return async (dispatch) => {
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/products`,
-        $data
+        {
+          img: image,
+          name: $data.name,
+          price: $data.price,
+          size: $data.size,
+          color: $data.color,
+          quantity: $data.quantity,
+          description: $data.description,
+          status: "New",
+          sold: "0",
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       console.log(res);
+      navigate("/admin");
       dispatch({ type: "ADD_PRODUCT", payload: res.data });
     } catch (err) {
       console.log(err);

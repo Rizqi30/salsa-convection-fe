@@ -2,7 +2,7 @@ import Batik from "../../assets/batik.png";
 import { useState } from "react";
 import NewProduct from "./NewProduct";
 import { Container } from "react-bootstrap";
-import "./nweproduct.css";
+import "./newproduct.css";
 import { Link } from "react-router-dom";
 
 function ListNewProduct() {

@@ -1,19 +1,28 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
+import "./style.css";
 import SideBar from "./SideBar";
 import Home from "./Home";
+import Header from "./Header";
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 function Admin() {
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
+
+  const OpenSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle);
+  };
+
   return (
-    <div className="container-fluid bg-secondary min-vh-100">
-      <div className="row">
-        <div className="col-2 bg-white vh-100">
-          <SideBar />
-        </div>
+    <div className="grid-container">
+      <Header OpenSidebar={OpenSidebar} />
+      <SideBar
+        openSidebarToggle={openSidebarToggle}
+        OpenSidebar={OpenSidebar}
+      />
+      <div className="content d-flex">
+        <Outlet />
       </div>
-      <div className="col-auto">
-        <Home />
-      </div>
+      {/* <Home /> */}
     </div>
   );
 }
