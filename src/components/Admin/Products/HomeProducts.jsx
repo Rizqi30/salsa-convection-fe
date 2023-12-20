@@ -27,12 +27,12 @@ function HomeProducts() {
         <table className="table table-stipend" style={{ width: "100%" }}>
           <thead>
             <tr>
-              <th style={{ width: "2rem" }}>Product</th>
-              <th style={{ width: "2rem" }}>Name</th>
+              <th style={{ width: "2rem" }}>Produk</th>
+              <th style={{ width: "2rem" }}>Nama</th>
               <th style={{ width: "2rem" }}>Harga</th>
-              <th style={{ width: "2rem" }}>Size</th>
-              <th style={{ width: "2rem" }}>Color</th>
-              <th style={{ width: "2rem" }}>Quantity</th>
+              <th style={{ width: "2rem" }}>Ukuran</th>
+              <th style={{ width: "2rem" }}>Warna</th>
+              <th style={{ width: "2rem" }}>Jumlah</th>
               <th style={{ width: "2rem" }}>Action</th>
             </tr>
           </thead>
@@ -51,19 +51,21 @@ function HomeProducts() {
                 <td>{item.color}</td>
                 <td>{item.quantity}</td>
                 <td>
-                  <Link to={"/admin/read/" + item.id}>
-                    <button className="btn btn-sm btn-primary me-2">
-                      Read
-                    </button>
-                  </Link>
-                  <Link to={"/admin/update/" + item.id}>
-                    <button className="btn btn-sm btn-primary me-2">
-                      Update
-                    </button>
-                  </Link>
-                  <Link to={"/admin/delete/" + item.id}>
-                    <button className="btn btn-sm btn-danger">Delete</button>
-                  </Link>
+                  <div className="d-flex">
+                    <Link to={"/admin/read/" + item.id}>
+                      <button className="btn btn-sm btn-primary me-2">
+                        Read
+                      </button>
+                    </Link>
+                    <Link to={"/admin/update/" + item.id}>
+                      <button className="btn btn-sm btn-primary me-2">
+                        Update
+                      </button>
+                    </Link>
+                    <Link to={"/admin/delete/" + item.id}>
+                      <button className="btn btn-sm btn-danger">Delete</button>
+                    </Link>
+                  </div>
                 </td>
               </tr>
             ))}

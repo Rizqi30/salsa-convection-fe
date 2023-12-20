@@ -63,16 +63,27 @@ export const storeProducts = ($data, image, navigate) => {
   };
 };
 
-export const updateProductsById = ($data) => {
+export const updateProductsById = (data, image, id, navigate) => {
   // Update product
   return async (dispatch) => {
     try {
       const res = await axios.put(
-        `${import.meta.env.VITE_API_URL}/api/products/{id}`,
-        $data
+        `${import.meta.env.VITE_API_URL}/api/products/${id}`,
+        {
+          img: image,
+          name: data.name,
+          price: data.price,
+          size: data.size,
+          color: data.color,
+          quantity: data.quantity,
+          description: data.description,
+          status: "New",
+          sold: "0",
+        }
       );
-      console.log(res);
+
       dispatch({ type: "UPDATE_PRODUCT", payload: res.data });
+      navigate("/admin");
     } catch (err) {
       console.log(err);
     }

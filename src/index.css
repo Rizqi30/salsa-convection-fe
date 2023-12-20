@@ -1,3 +1,7 @@
 .font-popins {
   font-family: "Poppins", sans-serif;
 }
+
+.card:first-child {
+  background-color: #ffff !important;
+}

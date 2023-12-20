@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { storeProducts } from "../../../config/Redux/Action/productAction";
@@ -31,7 +31,7 @@ const AddProducts = () => {
         <h1>Tambah Produk</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-2">
-            <label htmlFor="name">Tambah Gambar</label>
+            <label htmlFor="name">Gambar Produk</label>
             <input
               type="file"
               name="img"
@@ -46,7 +46,7 @@ const AddProducts = () => {
               type="text"
               name="name"
               className="form-control"
-              placeholder="Masukkan Product"
+              placeholder="Masukkan Produk"
               onChange={(e) => setValues({ ...values, name: e.target.value })}
             />
           </div>
@@ -76,7 +76,7 @@ const AddProducts = () => {
               type="text"
               name="color"
               className="form-control"
-              placeholder="Masukkan Color"
+              placeholder="Masukkan Warna"
               onChange={(e) => setValues({ ...values, color: e.target.value })}
             />
           </div>
@@ -86,7 +86,7 @@ const AddProducts = () => {
               type="text"
               name="quantity"
               className="form-control"
-              placeholder="Masukkan Quantity"
+              placeholder="Masukkan Jumlah"
               onChange={(e) =>
                 setValues({ ...values, quantity: e.target.value })
               }

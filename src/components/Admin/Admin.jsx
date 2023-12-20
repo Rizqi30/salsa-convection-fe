@@ -19,10 +19,9 @@ function Admin() {
         openSidebarToggle={openSidebarToggle}
         OpenSidebar={OpenSidebar}
       />
-      <div className="content d-flex">
+      <div className="content d-flex" style={{ overflowY: "auto" }}>
         <Outlet />
       </div>
-      {/* <Home /> */}
     </div>
   );
 }
