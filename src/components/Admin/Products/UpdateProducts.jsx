@@ -42,7 +42,6 @@ const UpdateProducts = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(updateProductsById(values, image, id, navigate));
-    console.log(values);
   };
 
   useEffect(() => {
@@ -107,6 +106,7 @@ const UpdateProducts = () => {
               className="form-control"
               placeholder="Masukkan Harga"
               value={values.price}
+              onChange={(e) => setValues({ ...values, price: e.target.value })}
             />
           </div>
           <div className="mb-2">
@@ -117,6 +117,7 @@ const UpdateProducts = () => {
               className="form-control"
               placeholder="Masukkan Size"
               value={values.size}
+              onChange={(e) => setValues({ ...values, size: e.target.value })}
             />
           </div>
           <div className="mb-2">
@@ -127,6 +128,7 @@ const UpdateProducts = () => {
               className="form-control"
               placeholder="Masukkan Warna"
               value={values.color}
+              onChange={(e) => setValues({ ...values, color: e.target.value })}
             />
           </div>
           <div className="mb-2">
@@ -137,6 +139,9 @@ const UpdateProducts = () => {
               className="form-control"
               placeholder="Masukkan Quantity"
               value={values.quantity}
+              onChange={(e) =>
+                setValues({ ...values, quantity: e.target.value })
+              }
             />
           </div>
           <div className="mb-2">
@@ -147,6 +152,9 @@ const UpdateProducts = () => {
               className="form-control"
               placeholder="Masukkan Description"
               value={values.description}
+              onChange={(e) =>
+                setValues({ ...values, description: e.target.value })
+              }
             />
           </div>
           <button className="btn btn-success" type={"submit"}>

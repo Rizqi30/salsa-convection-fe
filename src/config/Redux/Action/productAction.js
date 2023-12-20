@@ -70,7 +70,6 @@ export const updateProductsById = (data, image, id, navigate) => {
       const res = await axios.put(
         `${import.meta.env.VITE_API_URL}/api/products/${id}`,
         {
-          img: image,
           name: data.name,
           price: data.price,
           size: data.size,
@@ -81,6 +80,21 @@ export const updateProductsById = (data, image, id, navigate) => {
           sold: "0",
         }
       );
+
+      if (image) {
+        await axios.post(
+          `${import.meta.env.VITE_API_URL}/api/products/image`,
+          {
+            id: id,
+            img: image,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+      }
 
       dispatch({ type: "UPDATE_PRODUCT", payload: res.data });
       navigate("/admin");
