@@ -34,54 +34,69 @@ function HomeProducts() {
             Add +
           </Link>
         </div>
-        <table className="table table-stipend" style={{ width: "100%" }}>
-          <thead>
-            <tr>
-              <th style={{ width: "2rem" }}>Produk</th>
-              <th style={{ width: "2rem" }}>Nama</th>
-              <th style={{ width: "2rem" }}>Harga</th>
-              <th style={{ width: "2rem" }}>Ukuran</th>
-              <th style={{ width: "2rem" }}>Warna</th>
-              <th style={{ width: "2rem" }}>Jumlah</th>
-              <th style={{ width: "2rem" }}>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allProducts.map((item) => (
-              <tr key={item.id}>
-                <td>
-                  <img
-                    className="img-fluid"
-                    src={"http://127.0.0.1:8000/images/" + item.img}
-                  />
-                </td>
-                <td>{item.name}</td>
-                <td>{item.price}</td>
-                <td>{item.size}</td>
-                <td>{item.color}</td>
-                <td>{item.quantity}</td>
-                <td>
-                  <div className="d-flex">
-                    <Link to={"/admin/read/" + item.id}>
-                      <button className="btn btn-sm btn-info me-2">Read</button>
-                    </Link>
-                    <Link to={"/admin/update/" + item.id}>
-                      <button className="btn btn-sm btn-primary me-2">
-                        Update
-                      </button>
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(item.id)}
-                      className="btn btn-sm btn-danger"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
+        <div className="table-responsive">
+          <table
+            className="table table-stipend overflow-x-auto"
+            style={{ width: "100%" }}
+          >
+            <thead>
+              <tr>
+                <th style={{ width: "2rem" }}>Produk</th>
+                <th style={{ width: "2rem" }}>Nama</th>
+                <th style={{ width: "2rem" }}>Harga</th>
+                <th style={{ width: "2rem" }}>Ukuran</th>
+                <th style={{ width: "2rem" }}>Warna</th>
+                <th style={{ width: "2rem" }}>Jumlah</th>
+                <th style={{ width: "2rem" }}>Status</th>
+                <th style={{ width: "2rem" }}>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {allProducts.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    <img
+                      className="img-fluid"
+                      src={"http://127.0.0.1:8000/images/" + item.img}
+                      alt="product"
+                      style={{
+                        height: "5rem",
+                        width: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </td>
+                  <td>{item.name}</td>
+                  <td>{item.price}</td>
+                  <td>{item.size}</td>
+                  <td>{item.color}</td>
+                  <td>{item.quantity}</td>
+                  <td>{item.status}</td>
+                  <td>
+                    <div className="d-flex">
+                      <Link to={"/admin/read/" + item.id}>
+                        <button className="btn btn-sm btn-info me-2">
+                          Read
+                        </button>
+                      </Link>
+                      <Link to={"/admin/update/" + item.id}>
+                        <button className="btn btn-sm btn-primary me-2">
+                          Update
+                        </button>
+                      </Link>
+                      <button
+                        onClick={() => handleDelete(item.id)}
+                        className="btn btn-sm btn-danger"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

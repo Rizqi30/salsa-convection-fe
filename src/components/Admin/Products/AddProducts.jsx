@@ -112,6 +112,7 @@ const AddProducts = () => {
               className="form-control"
               onChange={(e) => setValues({ ...values, status: e.target.value })}
             >
+              <option value="">Pilih Status</option>
               <option value="New">New</option>
               <option value="Latest">Latest</option>
             </select>
