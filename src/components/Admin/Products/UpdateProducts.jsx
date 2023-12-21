@@ -15,6 +15,7 @@ const UpdateProducts = () => {
     color: "",
     quantity: "",
     description: "",
+    status: "",
   });
 
   const { id } = useParams();
@@ -57,6 +58,7 @@ const UpdateProducts = () => {
       color: productById.color,
       quantity: productById.quantity,
       description: productById.description,
+      status: productById.status,
     });
     setImagePreview("http://127.0.0.1:8000/images/" + productById.img);
   }, [productById]);
@@ -156,6 +158,18 @@ const UpdateProducts = () => {
                 setValues({ ...values, description: e.target.value })
               }
             />
+          </div>
+          <div className="mb-2">
+            <label htmlFor="name">Status</label>
+            <select
+              name="status"
+              className="form-control"
+              value={values.status}
+              onChange={(e) => setValues({ ...values, status: e.target.value })}
+            >
+              <option value="New">New</option>
+              <option value="Latest">Latest</option>
+            </select>
           </div>
           <button className="btn btn-success" type={"submit"}>
             Update

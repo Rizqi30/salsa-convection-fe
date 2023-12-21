@@ -45,7 +45,7 @@ export const storeProducts = ($data, image, navigate) => {
           color: $data.color,
           quantity: $data.quantity,
           description: $data.description,
-          status: "New",
+          status: $data.status,
           sold: "0",
         },
         {
@@ -76,7 +76,7 @@ export const updateProductsById = (data, image, id, navigate) => {
           color: data.color,
           quantity: data.quantity,
           description: data.description,
-          status: "New",
+          status: data.status,
           sold: "0",
         }
       );
@@ -104,16 +104,16 @@ export const updateProductsById = (data, image, id, navigate) => {
   };
 };
 
-export const destroyProductsById = ($data) => {
+export const destroyProductsById = (id) => {
   // Delete product
   return async (dispatch) => {
     try {
       const res = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/api/products/{id}`,
-        $data
+        `${import.meta.env.VITE_API_URL}/api/products/${id}`
       );
       console.log(res);
       dispatch({ type: "DELETE_PRODUCT", payload: res.data });
+      dispatch(indexProducts());
     } catch (err) {
       console.log(err);
     }

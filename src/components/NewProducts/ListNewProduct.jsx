@@ -1,70 +1,49 @@
-import Batik from "../../assets/batik.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewProduct from "./NewProduct";
 import { Container } from "react-bootstrap";
 import "./newproduct.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { indexProducts } from "../../config/Redux/Action";
 
 function ListNewProduct() {
-  const [newProduct, setNewProduct] = useState([
-    {
-      id: 1,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-    {
-      id: 2,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-    {
-      id: 3,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-    {
-      id: 4,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-    {
-      id: 5,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-    {
-      id: 6,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-    {
-      id: 7,
-      imageUrl: Batik,
-      title: "Batik",
-      price: "Rp 100.000",
-    },
-  ]);
+  const dispatch = useDispatch();
+
+  const { allProducts } = useSelector((state) => state.productReducer);
+
+  const formatPriceInRupiah = (price) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(price);
+  };
+
+  useEffect(() => {
+    dispatch(indexProducts()); // indexPorducts didapat dari productAction
+  }, [dispatch]);
+
+  console.log(allProducts);
 
   return (
     <Container style={{ padding: 22 }}>
       <h2>Produk Terbaru</h2>
       <div className="detail-product-container d-flex p-3">
-        {newProduct.map((item) => {
-          return (
-            <Link to={"/" + item.id} key={item.id}>
-              <NewProduct
-                image={item.imageUrl}
-                title={item.title}
-                price={item.price}
-              />
-            </Link>
-          );
+        {allProducts.map((item) => {
+          if (item.status == "New") {
+            return (
+              <Link
+                to={"/" + item.id}
+                key={item.id}
+                style={{ textDecoration: "none" }}
+              >
+                <NewProduct
+                  image={"http://127.0.0.1:8000/images/" + item.img}
+                  title={item.name}
+                  price={formatPriceInRupiah(item.price)}
+                />
+              </Link>
+            );
+          }
         })}
       </div>
     </Container>

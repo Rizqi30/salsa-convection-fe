@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { indexProducts } from "../../../config/Redux/Action/productAction";
+import {
+  destroyProductsById,
+  indexProducts,
+} from "../../../config/Redux/Action/productAction";
 import { Link } from "react-router-dom";
 
 function HomeProducts() {
@@ -11,6 +14,13 @@ function HomeProducts() {
   useEffect(() => {
     dispatch(indexProducts()); // indexProducts didapat dari productAction untuk menampilkan keseluruhan produk
   }, [dispatch]);
+
+  const handleDelete = (id) => {
+    const confirm = window.confirm("Yakin mau hapus produk?");
+    if (confirm) {
+      dispatch(destroyProductsById(id));
+    }
+  };
 
   return (
     <div
@@ -53,18 +63,19 @@ function HomeProducts() {
                 <td>
                   <div className="d-flex">
                     <Link to={"/admin/read/" + item.id}>
-                      <button className="btn btn-sm btn-primary me-2">
-                        Read
-                      </button>
+                      <button className="btn btn-sm btn-info me-2">Read</button>
                     </Link>
                     <Link to={"/admin/update/" + item.id}>
                       <button className="btn btn-sm btn-primary me-2">
                         Update
                       </button>
                     </Link>
-                    <Link to={"/admin/delete/" + item.id}>
-                      <button className="btn btn-sm btn-danger">Delete</button>
-                    </Link>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="btn btn-sm btn-danger"
+                    >
+                      Delete
+                    </button>
                   </div>
                 </td>
               </tr>

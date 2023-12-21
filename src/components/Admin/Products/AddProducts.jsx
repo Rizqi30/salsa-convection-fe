@@ -11,6 +11,7 @@ const AddProducts = () => {
     color: "",
     quantity: "",
     description: "",
+    status: "",
   });
 
   const [image, setImage] = useState(null);
@@ -104,6 +105,18 @@ const AddProducts = () => {
               }
             />
           </div>
+          <div className="mb-2">
+            <label htmlFor="name">Status</label>
+            <select
+              name="status"
+              className="form-control"
+              onChange={(e) => setValues({ ...values, status: e.target.value })}
+            >
+              <option value="New">New</option>
+              <option value="Latest">Latest</option>
+            </select>
+          </div>
+
           <button className="btn btn-success">Submit</button>
           <Link to="/admin" className="btn btn-primary ms-3">
             Back

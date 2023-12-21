@@ -1,4 +1,3 @@
-import Batik from "../../assets/batik.png";
 import { useEffect, useState } from "react";
 import AllProduct from "./AllProduct";
 import { Container, Row, Col } from "react-bootstrap";
@@ -21,8 +20,6 @@ function ListAllProduct() {
   useEffect(() => {
     dispatch(indexProducts()); // indexPorducts didapat dari productAction
   }, [dispatch]);
-
-  console.log(allProducts);
 
   return (
     <Container style={{ padding: 22 }}>

@@ -50,6 +50,9 @@ const ReadProducts = () => {
         <div className="mb-2">
           <strong>Deskripsi: {productById.description}</strong>
         </div>
+        <div className="mb-2">
+          <strong>Status: {productById.status}</strong>
+        </div>
         <Link
           to={"/admin/update/" + productById.id}
           className="btn btn-success"
