@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import InputGroup from "react-bootstrap/InputGroup";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import { MdMessage } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { logout } from "../../config/Redux/Action/authAction";
@@ -15,9 +15,9 @@ function NavItem() {
   const [screenWidth, setScreenWidth] = useState();
   const dispatch = useDispatch(); // useDispatch() digunakan untuk mengirim action ke reducer
   const token = localStorage.getItem("token");
+  const { idUser } = useParams();
 
   const { user } = useSelector((state) => state.authReducer); // mendapatkan data
-  console.log(user);
 
   const handleLogout = () => {
     dispatch(logout(token));
@@ -62,14 +62,26 @@ function NavItem() {
             <FaSearch />
           </InputGroup.Text>
         </InputGroup>
-        <Link
-          className="mx-2"
-          href="#action1"
-          style={{ color: "#ffffff", fontSize: "23px" }}
-          to={"/cart"}
-        >
-          <FaShoppingCart />
-        </Link>
+        {!token || token == "" || idUser === undefined ? (
+          <Link
+            className="mx-2"
+            href="#action1"
+            style={{ color: "#ffffff", fontSize: "23px" }}
+            to={"/login"}
+          >
+            <FaShoppingCart />
+          </Link>
+        ) : (
+          <Link
+            className="mx-2"
+            href="#action1"
+            style={{ color: "#ffffff", fontSize: "23px" }}
+            to={"/cart/" + idUser}
+          >
+            <FaShoppingCart />
+          </Link>
+        )}
+
         {screenWidth >= 992 && (
           <Nav.Link
             href="#action1"

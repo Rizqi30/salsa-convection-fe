@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import NewProduct from "./NewProduct";
 import { Container } from "react-bootstrap";
 import "./newproduct.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { indexProducts } from "../../config/Redux/Action";
 
 function ListNewProduct() {
   const dispatch = useDispatch();
+  const { idUser } = useParams();
 
   const { allProducts } = useSelector((state) => state.productReducer);
 
@@ -32,7 +33,7 @@ function ListNewProduct() {
           if (item.status == "New") {
             return (
               <Link
-                to={"/" + item.id}
+                to={"/" + idUser + "/" + item.id}
                 key={item.id}
                 style={{ textDecoration: "none" }}
               >

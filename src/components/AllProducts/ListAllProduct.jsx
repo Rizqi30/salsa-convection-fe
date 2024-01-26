@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import AllProduct from "./AllProduct";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { indexProducts } from "../../config/Redux/Action/productAction";
 
 function ListAllProduct() {
   const dispatch = useDispatch();
+  const { idUser } = useParams();
 
   const { allProducts } = useSelector((state) => state.productReducer);
 
@@ -27,7 +28,10 @@ function ListAllProduct() {
       <Row className="flex-wrap">
         {allProducts.map((item) => (
           <Col key={item.id} md={6} lg={3} className="p-3">
-            <Link to={"/" + item.id} className="text-decoration-none">
+            <Link
+              to={"/" + idUser + "/" + item.id}
+              className="text-decoration-none"
+            >
               <AllProduct
                 image={"http://127.0.0.1:8000/images/" + item.img}
                 title={item.name}

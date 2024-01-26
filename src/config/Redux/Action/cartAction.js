@@ -40,3 +40,17 @@ export const deleteCarts = (id) => {
     }
   };
 };
+
+export const getCartsByUserId = (id) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/cart/user/${id}`
+      );
+      console.log(res);
+      dispatch({ type: "GET_CARTS", payload: res.data.data });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};

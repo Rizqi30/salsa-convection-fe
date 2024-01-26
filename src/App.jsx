@@ -24,8 +24,9 @@ function App() {
       <Routes>
         <Route path="/" element={<NavbarFooter />}>
           <Route index element={<Homepages />} />
-          <Route path=":id" element={<DetailProduct />} />
-          <Route path="cart" element={<CartDetail />} />
+          <Route path=":idUser" element={<Homepages />} />
+          <Route path=":idUser/:id" element={<DetailProduct />} />
+          <Route path="cart/:idUser" element={<CartDetail />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkout-list" element={<CheckoutList />} />
           <Route path="/order/:id" element={<CheckoutOrder />} />

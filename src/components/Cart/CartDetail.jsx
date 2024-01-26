@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCarts, getCarts } from "../../config/Redux/Action/cartAction";
-import { useNavigate } from "react-router-dom";
+import {
+  deleteCarts,
+  getCarts,
+  getCartsByUserId,
+} from "../../config/Redux/Action/cartAction";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CartDetail = () => {
   const dispatch = useDispatch();
@@ -10,6 +14,7 @@ const CartDetail = () => {
   const { cart } = useSelector((state) => state.cartReducer);
   const [refresh, setRefresh] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
+  const { idUser } = useParams();
 
   const formatPriceInRupiah = (price) => {
     return new Intl.NumberFormat("id-ID", {
@@ -45,9 +50,9 @@ const CartDetail = () => {
   };
 
   useEffect(() => {
-    dispatch(getCarts());
+    dispatch(getCartsByUserId(idUser));
     setRefresh(false);
-  }, [dispatch, refresh]);
+  }, [dispatch, refresh, idUser]);
 
   return (
     <Container>

@@ -25,14 +25,15 @@ export const login = ($data, nav) => {
       console.log(res);
       dispatch({ type: "SET_TOKEN", payload: res.data.access_token });
       localStorage.setItem("token", res.data.access_token); // menyimpan token
-      nav("/"); // menuju home
+      // nav("/"); // menuju home
+      dispatch(me(res.data.access_token, nav)); // mengambil data user
     } catch (err) {
       console.log(err);
     }
   };
 };
 
-export const me = ($data) => {
+export const me = ($data, nav) => {
   return async (dispatch) => {
     try {
       axios.defaults.headers.common["Authorization"] = `Bearer ${$data}`; // Bearer token me
@@ -41,6 +42,9 @@ export const me = ($data) => {
       );
       console.log(res);
       dispatch({ type: "SET_USER", payload: res.data });
+      if (nav !== undefined) {
+        nav("/" + res.data.id);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -58,6 +62,7 @@ export const logout = ($data) => {
       dispatch({ type: "SET_TOKEN", payload: "" });
       localStorage.removeItem("token"); // menghapus token
       dispatch({ type: "SET_USER", payload: {} });
+      window.location.href = "/";
     } catch (err) {
       console.log(err);
     }
