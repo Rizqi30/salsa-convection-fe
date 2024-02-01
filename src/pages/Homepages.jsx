@@ -6,16 +6,17 @@ import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { getOrderBySnapToken } from "../config/Redux/Action";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { getOrderBySnapToken, me } from "../config/Redux/Action";
 
 const Homepages = () => {
   const dispatch = useDispatch();
   const { orderBySnapToken } = useSelector((state) => state.orderReducer);
+  const { idUser } = useParams();
 
   useEffect(() => {
-    dispatch(getOrderBySnapToken());
-  }, [dispatch]);
+    dispatch(getOrderBySnapToken(idUser));
+  }, [dispatch, idUser]);
 
   return (
     <>
@@ -33,7 +34,7 @@ const Homepages = () => {
           fontSize: "2rem",
         }}
       >
-        <Link to="/checkout-list" className="text-white">
+        <Link to={"/checkout-list/" + idUser} className="text-white">
           <div
             data-tooltip-id="my-tooltip"
             data-tooltip-content="Checkout!"

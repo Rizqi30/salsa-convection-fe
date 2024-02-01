@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Container, FloatingLabel, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../../config/Redux/Action/authAction";
+import { ToastContainer } from "react-toastify";
 
 const Login = () => {
   const [screenWidth, setScreenWidth] = useState();
@@ -11,9 +12,10 @@ const Login = () => {
     notelp: "",
     alamat: "",
     email: "",
+    role: "user",
     password: "",
   });
-
+  const nav = useNavigate();
   const dispatch = useDispatch(); // memanggil fungsi dispatch dari redux
 
   const handleChange = (e) => {
@@ -24,7 +26,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     // mengirim data / aksi
     e.preventDefault();
-    dispatch(register(formData));
+    dispatch(register(formData, nav));
   };
 
   useEffect(() => {
@@ -36,6 +38,7 @@ const Login = () => {
 
   return (
     <>
+      <ToastContainer />
       <div style={{ background: " #d63031", height: "auto" }}>
         {screenWidth >= 768 ? (
           <Container

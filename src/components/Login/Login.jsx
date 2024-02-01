@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../config/Redux/Action/authAction";
+import { ToastContainer } from "react-toastify";
 
 const Login = () => {
   const [screenWidth, setScreenWidth] = useState();
@@ -37,6 +38,7 @@ const Login = () => {
 
   return (
     <>
+      <ToastContainer />
       <div style={{ background: " #d63031", height: "100vh" }}>
         {screenWidth >= 768 ? (
           <Container

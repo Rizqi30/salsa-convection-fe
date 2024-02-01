@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderBySnapToken } from "../../config/Redux/Action";
-import { Link, useParams } from "react-router-dom";
+import { getOrderBySnapTokenAll } from "../../../config/Redux/Action";
 
-const CheckoutList = () => {
+const Transaction = () => {
   const dispatch = useDispatch();
   const { orderBySnapToken } = useSelector((state) => state.orderReducer);
-  const { idUser } = useParams();
 
   const formatPriceInRupiah = (price) => {
     return new Intl.NumberFormat("id-ID", {
@@ -17,19 +15,20 @@ const CheckoutList = () => {
   };
 
   useEffect(() => {
-    dispatch(getOrderBySnapToken(idUser));
-  }, [dispatch, idUser]);
+    dispatch(getOrderBySnapTokenAll());
+  }, [dispatch]);
 
   return (
     <Container>
       <div className="" style={{ minHeight: "65vh" }}>
+        <h1 className="text-center my-5">Riwayat Transaksi</h1>
         <table className="w-100 my-5">
           <thead>
             <tr>
               <th style={{ width: "2rem", paddingBottom: "2rem" }}>Product</th>
               <th style={{ width: "2rem", paddingBottom: "2rem" }}>Quantity</th>
               <th style={{ width: "2rem", paddingBottom: "2rem" }}>Total</th>
-              <th style={{ width: "2rem", paddingBottom: "2rem" }}>Action</th>
+              <th style={{ width: "2rem", paddingBottom: "2rem" }}>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -47,14 +46,7 @@ const CheckoutList = () => {
                   <td className="pb-4">
                     {formatPriceInRupiah(item.total_price)}
                   </td>
-                  <td className="pb-4">
-                    <Link
-                      to={`/order/${item.snap_token}/${idUser}`}
-                      className="btn btn-danger"
-                    >
-                      Detail Order
-                    </Link>
-                  </td>
+                  <td className="pb-4">{item.status}</td>
                 </tr>
               </React.Fragment>
             ))}
@@ -65,4 +57,4 @@ const CheckoutList = () => {
   );
 };
 
-export default CheckoutList;
+export default Transaction;

@@ -3,7 +3,6 @@ import { Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteCarts,
-  getCarts,
   getCartsByUserId,
 } from "../../config/Redux/Action/cartAction";
 import { useNavigate, useParams } from "react-router-dom";
@@ -41,7 +40,7 @@ const CartDetail = () => {
   };
 
   const handleCheckout = () => {
-    nav("/checkout", { state: { selectedItems } });
+    nav("/checkout/" + idUser, { state: { selectedItems } });
   };
 
   const handleDeleteCart = (id) => {

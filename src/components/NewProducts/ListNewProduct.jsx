@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import NewProduct from "./NewProduct";
 import { Container } from "react-bootstrap";
 import "./newproduct.css";
@@ -22,8 +22,6 @@ function ListNewProduct() {
   useEffect(() => {
     dispatch(indexProducts()); // indexPorducts didapat dari productAction
   }, [dispatch]);
-
-  console.log(allProducts);
 
   return (
     <Container style={{ padding: 22 }}>

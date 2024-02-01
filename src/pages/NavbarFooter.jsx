@@ -1,21 +1,23 @@
-import { useEffect } from "react";
 import NavItem from "../components/NavItem/NavItem";
 import Footer from "../components/Footer/Footer";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import { me } from "../config/Redux/Action/authAction";
-import { useDispatch } from "react-redux";
 
 const NavbarFooter = () => {
-  // mendapatkan user saat Login
-  const dispatch = useDispatch(); // useDispatch() digunakan untuk mengirim action ke reducer
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.authReducer);
+  const { idUser } = useParams();
   const token = localStorage.getItem("token");
+  const nav = useNavigate();
 
   useEffect(() => {
     if (token) {
       // CEK APAKAH ADA TOKEN
-      dispatch(me(token));
+      dispatch(me(token, nav));
     }
-  }, [dispatch, token]);
+  }, [dispatch, token, nav]);
 
   return (
     <>

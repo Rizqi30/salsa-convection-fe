@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import {
   deleteCarts,
   getSnapToken,
   storeOrders,
 } from "../../config/Redux/Action";
 import { useDispatch, useSelector } from "react-redux";
+
+const randomId = Math.floor(Math.random() * 1000000000);
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -15,6 +17,7 @@ const Checkout = () => {
   const { snapToken } = useSelector((state) => state.orderReducer);
   const [total, setTotal] = useState(0);
   const [biayaLayanan, setBiayaLayanan] = useState(0);
+  const { idUser } = useParams();
 
   const sumTotal = (data) => {
     const total = data.reduce(
@@ -37,7 +40,8 @@ const Checkout = () => {
   };
 
   const handlePayment = async () => {
-    dispatch(getSnapToken(total + biayaLayanan));
+    dispatch(getSnapToken(total + biayaLayanan, randomId));
+
     selectedItems.map((item) => {
       dispatch(deleteCarts(item.cart_id));
     });
@@ -51,10 +55,10 @@ const Checkout = () => {
   useEffect(() => {
     if (snapToken) {
       selectedItems.map((item) => {
-        dispatch(storeOrders(snapToken, item));
+        dispatch(storeOrders(snapToken, item, idUser, randomId));
       });
     }
-  }, [dispatch, selectedItems, snapToken]);
+  }, [dispatch, snapToken, selectedItems, idUser]);
 
   return (
     <Container>

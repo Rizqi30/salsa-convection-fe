@@ -23,6 +23,9 @@ const Checkout = () => {
   useEffect(() => {
     dispatch(getOrderBySnapTokenId(id));
   }, [dispatch, id]);
+  console.log(id);
+
+  console.log(orderBySnapTokenId);
 
   return (
     <Container>

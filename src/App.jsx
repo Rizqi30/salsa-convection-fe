@@ -17,6 +17,8 @@ import ReadProducts from "./components/Admin/Products/ReadProducts";
 import "react-tooltip/dist/react-tooltip.css";
 import CheckoutList from "./components/Checkout/CheckoutList";
 import CheckoutOrder from "./components/Checkout/CheckoutOrder";
+import TransactionList from "./components/Admin/Transaction/Transaction";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -27,9 +29,9 @@ function App() {
           <Route path=":idUser" element={<Homepages />} />
           <Route path=":idUser/:id" element={<DetailProduct />} />
           <Route path="cart/:idUser" element={<CartDetail />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/checkout-list" element={<CheckoutList />} />
-          <Route path="/order/:id" element={<CheckoutOrder />} />
+          <Route path="/checkout/:idUser" element={<Checkout />} />
+          <Route path="/checkout-list/:idUser" element={<CheckoutList />} />
+          <Route path="/order/:id/:idUser" element={<CheckoutOrder />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/daftar" element={<Register />} />
@@ -39,6 +41,8 @@ function App() {
           <Route path="create" element={<AddProducts />} />
           <Route path="update/:id" element={<UpdateProducts />} />
           <Route path="read/:id" element={<ReadProducts />} />
+          <Route path="transaction" element={<TransactionList />} />
+          <Route path="*" element={<h1>Not Found</h1>} />
         </Route>
       </Routes>
     </Provider>

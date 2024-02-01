@@ -8,7 +8,7 @@ export const indexProducts = ($data) => {
         `${import.meta.env.VITE_API_URL}/api/products`,
         $data
       );
-      console.log(res);
+
       dispatch({ type: "FETCH_ALL_PRODUCTS", payload: res.data.data });
     } catch (err) {
       console.log(err);
