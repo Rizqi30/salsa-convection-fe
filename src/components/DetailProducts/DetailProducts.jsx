@@ -192,7 +192,6 @@ const DetailProduct = () => {
                 </Button>
               </div>
             )}
-            ;
           </Col>
         </Row>
       </Container>

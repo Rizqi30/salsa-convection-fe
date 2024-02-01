@@ -1,22 +1,20 @@
 import {
   BsCart3,
-  BsGrid1X2Fill,
   BsFillArchiveFill,
-  BsFillGrid3X3GapFill,
-  BsPeopleFill,
-  BsListCheck,
   BsMenuButtonWideFill,
-  BsFillGearFill,
 } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 
 function SideBar({ openSidebarToggle, OpenSidebar }) {
+  const { user } = useSelector((state) => state.authReducer);
+  const location = useLocation();
   return (
     <aside
       id="sidebar"
       className={openSidebarToggle ? "sidebar-responsive" : ""}
     >
-      <div className="sidebar-title">
+      <div className="sidebar-title text-white">
         <div className="sidebar-brand">
           <BsCart3 className="icon_header" /> SHOP
         </div>
@@ -26,41 +24,36 @@ function SideBar({ openSidebarToggle, OpenSidebar }) {
       </div>
 
       <ul className="sidebar-list">
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsGrid1X2Fill className="icon" /> Dashboard
-          </a>
-        </li>
-        <li className="sidebar-list-item">
-          <Link to="/admin">
+        <Link
+          to={"/admin/" + user.id}
+          className={`text-decoration-none text-secondary ${
+            location.pathname === "/admin/" + user.id && "text-black"
+          }`}
+        >
+          <li
+            className={`sidebar-list-item ${
+              location.pathname === "/admin/" + user.id && "bg-white"
+            }`}
+          >
             <BsFillArchiveFill className="icon" /> Products
-          </Link>
-        </li>
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsFillGrid3X3GapFill className="icon" /> Categories
-          </a>
-        </li>
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsPeopleFill className="icon" /> Customers
-          </a>
-        </li>
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsListCheck className="icon" /> Inventory
-          </a>
-        </li>
-        <li className="sidebar-list-item">
-          <a href="">
+          </li>
+        </Link>
+        <Link
+          to={"/admin/transaction/" + user.id}
+          className={`text-decoration-none text-secondary ${
+            location.pathname === "/admin/transaction/" + user.id &&
+            "text-black"
+          }`}
+        >
+          <li
+            className={`sidebar-list-item ${
+              location.pathname === "/admin/transaction/" + user.id &&
+              "bg-white"
+            }`}
+          >
             <BsMenuButtonWideFill className="icon" /> Reports
-          </a>
-        </li>
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsFillGearFill className="icon" /> Setting
-          </a>
-        </li>
+          </li>
+        </Link>
       </ul>
     </aside>
   );

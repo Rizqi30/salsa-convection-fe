@@ -71,9 +71,7 @@ export const logout = ($data) => {
   return async (dispatch) => {
     try {
       axios.defaults.headers.common["Authorization"] = `Bearer ${$data}`; // Bearer token me
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/logout`
-      );
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/logout`);
       dispatch({ type: "SET_TOKEN", payload: "" });
       localStorage.removeItem("token"); // menghapus token
       dispatch({ type: "SET_USER", payload: {} });

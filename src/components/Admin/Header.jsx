@@ -2,9 +2,10 @@ import {
   BsFillBellFill,
   BsFillEnvelopeFill,
   BsPersonCircle,
-  BsSearch,
   BsJustify,
 } from "react-icons/bs";
+import { MdArrowBack } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 function Header({ OpenSidebar }) {
   return (
@@ -13,7 +14,9 @@ function Header({ OpenSidebar }) {
         <BsJustify className="icon" onClick={OpenSidebar} />
       </div>
       <div className="header-left">
-        <BsSearch className="icon" />
+        <Link to="/" className="text-decoration-none text-black">
+          <MdArrowBack size={25} className="mx-2" />
+        </Link>
       </div>
       <div className="header-right">
         <BsFillBellFill className="icon" />

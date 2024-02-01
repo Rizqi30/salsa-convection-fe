@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import InputGroup from "react-bootstrap/InputGroup";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
-import { MdMessage } from "react-icons/md";
+import { MdDashboard } from "react-icons/md";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
@@ -16,7 +16,6 @@ function NavItem() {
   const dispatch = useDispatch(); // useDispatch() digunakan untuk mengirim action ke reducer
   const token = localStorage.getItem("token");
   const { idUser } = useParams();
-
   const { user } = useSelector((state) => state.authReducer); // mendapatkan data
 
   const handleLogout = () => {
@@ -82,14 +81,14 @@ function NavItem() {
           </Link>
         )}
 
-        {screenWidth >= 992 && (
-          <Nav.Link
-            href="#action1"
+        {user.role === "admin" && (
+          <Link
+            to={"/admin/" + user.id}
             className="mx-2"
             style={{ color: "#ffffff", fontSize: "23px" }}
           >
-            <MdMessage />
-          </Nav.Link>
+            <MdDashboard />
+          </Link>
         )}
 
         <Navbar.Toggle aria-controls="navbarScroll" className="bg-white" />

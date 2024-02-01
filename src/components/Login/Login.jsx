@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../config/Redux/Action/authAction";
 import { ToastContainer } from "react-toastify";
@@ -15,10 +15,6 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const nav = useNavigate(); // untuk menuju ke home setelah login
-
-  // Cek token apakah sudah diisi
-  const { token } = useSelector((state) => state.authReducer);
-  console.log(token);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

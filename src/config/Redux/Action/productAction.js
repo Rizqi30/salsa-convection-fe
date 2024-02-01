@@ -31,7 +31,7 @@ export const showProductById = (id) => {
   };
 };
 
-export const storeProducts = ($data, image, navigate) => {
+export const storeProducts = ($data, image, navigate, id) => {
   // Menambah product
   return async (dispatch) => {
     try {
@@ -55,7 +55,7 @@ export const storeProducts = ($data, image, navigate) => {
         }
       );
       console.log(res);
-      navigate("/admin");
+      navigate("/admin/" + id);
       dispatch({ type: "ADD_PRODUCT", payload: res.data });
     } catch (err) {
       console.log(err);

@@ -37,11 +37,11 @@ function App() {
         <Route path="/daftar" element={<Register />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/admin" element={<Admin />}>
-          <Route index element={<HomeProducts />} />
-          <Route path="create" element={<AddProducts />} />
+          <Route path=":idAdmin" element={<HomeProducts />} />
+          <Route path="create/:idAdmin" element={<AddProducts />} />
           <Route path="update/:id" element={<UpdateProducts />} />
           <Route path="read/:id" element={<ReadProducts />} />
-          <Route path="transaction" element={<TransactionList />} />
+          <Route path="transaction/:idAdmin" element={<TransactionList />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Route>
       </Routes>

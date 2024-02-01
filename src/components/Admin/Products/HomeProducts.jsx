@@ -8,12 +8,8 @@ import { Link } from "react-router-dom";
 
 function HomeProducts() {
   const dispatch = useDispatch();
-
+  const { user } = useSelector((state) => state.authReducer);
   const { allProducts } = useSelector((state) => state.productReducer);
-
-  useEffect(() => {
-    dispatch(indexProducts()); // indexProducts didapat dari productAction untuk menampilkan keseluruhan produk
-  }, [dispatch]);
 
   const handleDelete = (id) => {
     const confirm = window.confirm("Yakin mau hapus produk?");
@@ -21,6 +17,10 @@ function HomeProducts() {
       dispatch(destroyProductsById(id));
     }
   };
+
+  useEffect(() => {
+    dispatch(indexProducts()); // indexProducts didapat dari productAction untuk menampilkan keseluruhan produk
+  }, [dispatch]);
 
   return (
     <div
@@ -30,7 +30,7 @@ function HomeProducts() {
       <h1>Daftar Produk Salsa Convection</h1>
       <div className="w-75 rounded bg-white border shadow p-4">
         <div className="d-flex justify-content-end">
-          <Link to="/admin/create" className="btn btn-success">
+          <Link to={"/admin/create/" + user.id} className="btn btn-success">
             Add +
           </Link>
         </div>

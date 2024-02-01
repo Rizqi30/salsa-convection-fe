@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { storeProducts } from "../../../config/Redux/Action/productAction";
 
@@ -20,10 +20,11 @@ const AddProducts = () => {
 
   const navigate = useNavigate();
 
+  const { user } = useSelector((state) => state.authReducer);
   const handleSubmit = (event) => {
     event.preventDefault();
     // storeProducts didapat dari productAction untuk menambahkan produk
-    dispatch(storeProducts(values, image, navigate)); // navigate untuk kembali ke awal
+    dispatch(storeProducts(values, image, navigate, user.id)); // navigate untuk kembali ke awal
   };
 
   return (
@@ -119,7 +120,7 @@ const AddProducts = () => {
           </div>
 
           <button className="btn btn-success">Submit</button>
-          <Link to="/admin" className="btn btn-primary ms-3">
+          <Link to={"/admin/" + user.id} className="btn btn-primary ms-3">
             Back
           </Link>
         </form>
