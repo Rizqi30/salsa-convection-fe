@@ -5,7 +5,7 @@ import ListAllProduct from "../components/AllProducts/ListAllProduct";
 import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getOrderBySnapToken, me } from "../config/Redux/Action";
 
@@ -13,6 +13,13 @@ const Homepages = () => {
   const dispatch = useDispatch();
   const { orderBySnapToken } = useSelector((state) => state.orderReducer);
   const { idUser } = useParams();
+  const [jenisCategory, setJenisCategory] = useState("");
+  const nav = useNavigate();
+
+  const handleCategory = (category) => {
+    setJenisCategory(category);
+    nav("/category/" + category + "/" + idUser);
+  };
 
   useEffect(() => {
     dispatch(getOrderBySnapToken(idUser));
@@ -21,7 +28,7 @@ const Homepages = () => {
   return (
     <>
       <Jumbotron />
-      <ListCategory />
+      <ListCategory setJenisCategory={handleCategory} />
       <ListNewProduct />
       <ListAllProduct />
       <div

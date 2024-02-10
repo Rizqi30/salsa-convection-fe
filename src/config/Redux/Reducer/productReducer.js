@@ -1,6 +1,7 @@
 const initialState = {
   allProducts: [],
   productById: {},
+  productByCategories: [],
   selectedProduct: null,
 };
 
@@ -23,7 +24,11 @@ const productReducer = (state = initialState, action) => {
         ...state,
         allProducts: [...state.allProducts, action.payload],
       };
-
+    case "GET_PRODUCT_BY_CATEGORIES":
+      return {
+        ...state,
+        productByCategories: action.payload,
+      };
     case "UPDATE_PRODUCT":
       return {
         ...state,

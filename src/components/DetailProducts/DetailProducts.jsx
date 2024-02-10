@@ -57,15 +57,6 @@ const DetailProduct = () => {
     dispatch(storeCarts(data));
   };
 
-  const handleBuyNow = () => {
-    // Implement logic to proceed with the purchase
-    console.log("Buy Now:", {
-      size: selectedSize,
-      color: selectedColor,
-      quantity: quantity,
-    });
-  };
-
   // mendapatkan data size
   useEffect(() => {
     const sizeData = productById?.size;
@@ -166,13 +157,6 @@ const DetailProduct = () => {
                 >
                   Add to Cart
                 </Button>
-                <Button
-                  className="mx-1"
-                  variant="success"
-                  onClick={handleLogin}
-                >
-                  Buy Now
-                </Button>
               </div>
             ) : (
               <div className="my-2">
@@ -182,13 +166,6 @@ const DetailProduct = () => {
                   onClick={handleAddToCart}
                 >
                   Add to Cart
-                </Button>
-                <Button
-                  className="mx-1"
-                  variant="success"
-                  onClick={handleBuyNow}
-                >
-                  Buy Now
                 </Button>
               </div>
             )}

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../config/Redux/Action/authAction";
 import { ToastContainer } from "react-toastify";
+import salsa from "../../assets/salsanobg.png";
 
 const Login = () => {
   const [screenWidth, setScreenWidth] = useState();
@@ -44,7 +45,7 @@ const Login = () => {
             {screenWidth >= 768 && (
               <div className="mx-4 w-25">
                 <div className="d-flex justify-content-center">
-                  <img src="https://via.placeholder.com/275x275" alt="logo" />
+                  <img src={salsa} alt="logo" />
                 </div>
                 <p
                   className="text-white text-center m-0"

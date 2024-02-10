@@ -46,6 +46,7 @@ function HomeProducts() {
                 <th style={{ width: "2rem" }}>Harga</th>
                 <th style={{ width: "2rem" }}>Ukuran</th>
                 <th style={{ width: "2rem" }}>Warna</th>
+                <th style={{ width: "2rem" }}>Kategori</th>
                 <th style={{ width: "2rem" }}>Jumlah</th>
                 <th style={{ width: "2rem" }}>Status</th>
                 <th style={{ width: "2rem" }}>Action</th>
@@ -70,6 +71,7 @@ function HomeProducts() {
                   <td>{item.price}</td>
                   <td>{item.size}</td>
                   <td>{item.color}</td>
+                  <td>{item.categories}</td>
                   <td>{item.quantity}</td>
                   <td>{item.status}</td>
                   <td>

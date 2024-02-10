@@ -20,6 +20,8 @@ import CheckoutOrder from "./components/Checkout/CheckoutOrder";
 import TransactionList from "./components/Admin/Transaction/Transaction";
 import "react-toastify/dist/ReactToastify.css";
 
+import CategoryProduct from "./pages/CategoryProduct";
+
 function App() {
   return (
     <Provider store={store}>
@@ -32,6 +34,10 @@ function App() {
           <Route path="/checkout/:idUser" element={<Checkout />} />
           <Route path="/checkout-list/:idUser" element={<CheckoutList />} />
           <Route path="/order/:id/:idUser" element={<CheckoutOrder />} />
+          <Route
+            path="/category/:categories/:idUser"
+            element={<CategoryProduct />}
+          />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/daftar" element={<Register />} />

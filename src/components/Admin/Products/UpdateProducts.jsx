@@ -13,6 +13,7 @@ const UpdateProducts = () => {
     price: "",
     size: "",
     color: "",
+    categories: "",
     quantity: "",
     description: "",
     status: "",
@@ -30,6 +31,8 @@ const UpdateProducts = () => {
 
   const { productById } = useSelector((state) => state.productReducer);
 
+  const { user } = useSelector((state) => state.authReducer);
+
   // ...
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -42,7 +45,7 @@ const UpdateProducts = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(updateProductsById(values, image, id, navigate));
+    dispatch(updateProductsById(values, image, id, navigate, user.id));
   };
 
   useEffect(() => {
@@ -56,6 +59,7 @@ const UpdateProducts = () => {
       price: productById.price,
       size: productById.size,
       color: productById.color,
+      categories: productById.categories,
       quantity: productById.quantity,
       description: productById.description,
       status: productById.status,
@@ -134,6 +138,27 @@ const UpdateProducts = () => {
             />
           </div>
           <div className="mb-2">
+            <label htmlFor="name">Kategori</label>
+            <select
+              name="categories"
+              className="form-control"
+              value={values.categories}
+              onChange={(e) =>
+                setValues({ ...values, categories: e.target.value })
+              }
+            >
+              <option value="">Pilih Kategori</option>
+              <option value="Batik">Batik</option>
+              <option value="Celana">Celana</option>
+              <option value="Gamis">Gamis</option>
+              <option value="Hijab">Hijab</option>
+              <option value="Kaos">Kaos</option>
+              <option value="Kemeja">Kemeja</option>
+              <option value="Kemeja">Pants</option>
+              <option value="Kemeja">Rok</option>
+            </select>
+          </div>
+          <div className="mb-2">
             <label htmlFor="name">Quantity</label>
             <input
               type="text"
@@ -174,7 +199,7 @@ const UpdateProducts = () => {
           <button className="btn btn-success" type={"submit"}>
             Update
           </button>
-          <Link to="/admin" className="btn btn-primary ms-3">
+          <Link to={"/admin/" + user.id} className="btn btn-primary ms-3">
             Back
           </Link>
         </form>

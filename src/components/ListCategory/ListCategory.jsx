@@ -11,7 +11,7 @@ import Skirt from "../../assets/skirt.png";
 import "./ListCategory.css";
 import { Container } from "react-bootstrap";
 
-function ListCategory() {
+function ListCategory({ setJenisCategory }) {
   const [category, setCategory] = useState([
     {
       id: 1,
@@ -65,6 +65,7 @@ function ListCategory() {
       <div className="category-container d-flex md-p-3">
         {category.map((item) => (
           <Category
+            onClick={() => setJenisCategory(item.desc)}
             key={item.id}
             image={item.imageUrl}
             keterangan={item.desc}

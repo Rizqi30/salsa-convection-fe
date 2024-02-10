@@ -23,7 +23,6 @@ export const showProductById = (id) => {
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/api/products/${id}`
       );
-      console.log(res);
       dispatch({ type: "GET_PRODUCT_BY_ID", payload: res.data.data });
     } catch (err) {
       console.log(err);
@@ -43,6 +42,7 @@ export const storeProducts = ($data, image, navigate, id) => {
           price: $data.price,
           size: $data.size,
           color: $data.color,
+          categories: $data.categories,
           quantity: $data.quantity,
           description: $data.description,
           status: $data.status,
@@ -54,7 +54,6 @@ export const storeProducts = ($data, image, navigate, id) => {
           },
         }
       );
-      console.log(res);
       navigate("/admin/" + id);
       dispatch({ type: "ADD_PRODUCT", payload: res.data });
     } catch (err) {
@@ -63,7 +62,7 @@ export const storeProducts = ($data, image, navigate, id) => {
   };
 };
 
-export const updateProductsById = (data, image, id, navigate) => {
+export const updateProductsById = (data, image, id, navigate, adminId) => {
   // Update product
   return async (dispatch) => {
     try {
@@ -74,6 +73,7 @@ export const updateProductsById = (data, image, id, navigate) => {
           price: data.price,
           size: data.size,
           color: data.color,
+          categories: data.categories,
           quantity: data.quantity,
           description: data.description,
           status: data.status,
@@ -97,7 +97,7 @@ export const updateProductsById = (data, image, id, navigate) => {
       }
 
       dispatch({ type: "UPDATE_PRODUCT", payload: res.data });
-      navigate("/admin");
+      navigate("/admin/" + adminId);
     } catch (err) {
       console.log(err);
     }
@@ -114,6 +114,20 @@ export const destroyProductsById = (id) => {
       console.log(res);
       dispatch({ type: "DELETE_PRODUCT", payload: res.data });
       dispatch(indexProducts());
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const filterByCategories = (categories, data) => {
+  // Filter product by categories
+  return async (dispatch) => {
+    try {
+      const filterData = data.filter((item) => {
+        return item.categories === categories;
+      });
+      dispatch({ type: "GET_PRODUCT_BY_CATEGORIES", payload: filterData });
     } catch (err) {
       console.log(err);
     }

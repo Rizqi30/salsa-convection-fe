@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
+// import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import InputGroup from "react-bootstrap/InputGroup";
+// import InputGroup from "react-bootstrap/InputGroup";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { Link, useParams } from "react-router-dom";
@@ -32,104 +32,56 @@ function NavItem() {
   return (
     <Navbar expand="lg" style={{ padding: "10px", background: " #d63031" }}>
       <Container fluid className={screenWidth >= 992 ? "mx-5" : null}>
-        {screenWidth >= 992 && (
-          <Navbar.Brand>
-            <Link
-              to={"/"}
-              style={{
-                fontSize: "28px",
-                color: "#ffffff",
-                textDecoration: "none",
-              }}
-            >
-              Salsa Convection
-            </Link>
-          </Navbar.Brand>
-        )}
-
-        <InputGroup
-          className="my-2"
-          style={screenWidth >= 992 ? { width: "100%" } : { width: "70%" }}
-        >
-          <Form.Control
-            className="py-2"
-            placeholder="Cari Pakaian Anda"
-            aria-label="Cari Pakaian Anda"
-            aria-describedby="basic-addon2"
-          />
-          <InputGroup.Text id="basic-addon2">
-            <FaSearch />
-          </InputGroup.Text>
-        </InputGroup>
-        {!token || token == "" || idUser === undefined ? (
+        <Navbar.Brand>
           <Link
-            className="mx-2"
-            href="#action1"
-            style={{ color: "#ffffff", fontSize: "23px" }}
-            to={"/login"}
+            to={"/"}
+            style={{
+              fontSize: "28px",
+              color: "#ffffff",
+              textDecoration: "none",
+            }}
           >
-            <FaShoppingCart />
+            Salsa Convection
           </Link>
-        ) : (
-          <Link
-            className="mx-2"
-            href="#action1"
-            style={{ color: "#ffffff", fontSize: "23px" }}
-            to={"/cart/" + idUser}
-          >
-            <FaShoppingCart />
-          </Link>
-        )}
-
-        {user.role === "admin" && (
-          <Link
-            to={"/admin/" + user.id}
-            className="mx-2"
-            style={{ color: "#ffffff", fontSize: "23px" }}
-          >
-            <MdDashboard />
-          </Link>
-        )}
+        </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbarScroll" className="bg-white" />
 
         <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className=""
-            style={{
-              maxHeight: "1000px",
-              padding: "20px",
-            }}
-            navbarScroll
-          >
-            {screenWidth < 992 && (
+          <Nav className="ms-auto" navbarScroll>
+            {!token || token == "" || idUser === undefined ? (
               <Link
-                to={"/"}
-                style={{
-                  color: "#ffffff",
-                  fontSize: "23px",
-                  textDecoration: "none",
-                }}
+                className="mx-2 my-2 d-flex justify-content-center align-items-center"
+                href="#action1"
+                style={{ color: "#ffffff", fontSize: "23px" }}
+                to={"/login"}
               >
-                Salsa Convection
+                <FaShoppingCart />
+              </Link>
+            ) : (
+              <Link
+                className="mx-2 my-2 d-flex justify-content-center align-items-center"
+                href="#action1"
+                style={{ color: "#ffffff", fontSize: "23px" }}
+                to={"/cart/" + idUser}
+              >
+                <FaShoppingCart />
               </Link>
             )}
 
-            <Link
-              to={"/daftar"}
-              className="me-3"
-              style={{
-                color: "#ffffff",
-                fontSize: "20px",
-                textDecoration: "none",
-              }}
-            >
-              Daftar
-            </Link>
+            {user.role === "admin" && (
+              <Link
+                to={"/admin/" + user.id}
+                className="mx-2 my-2 d-flex justify-content-center align-items-center"
+                style={{ color: "#ffffff", fontSize: "23px" }}
+              >
+                <MdDashboard />
+              </Link>
+            )}
 
             {user.name ? ( // untuk logout set user kosong di action
               <Link
-                className="me-3"
+                className="mx-1 my-2 d-flex justify-content-center align-items-center"
                 style={{
                   color: "#ffffff",
                   fontSize: "20px",
@@ -143,7 +95,7 @@ function NavItem() {
             ) : (
               <Link
                 to={"/login"}
-                className="me-3"
+                className="mx-1 my-2 d-flex justify-content-center align-items-center"
                 style={{
                   color: "#ffffff",
                   fontSize: "20px",

@@ -9,6 +9,7 @@ const AddProducts = () => {
     price: "",
     size: "",
     color: "",
+    categories: "",
     quantity: "",
     description: "",
     status: "",
@@ -73,7 +74,7 @@ const AddProducts = () => {
             />
           </div>
           <div className="mb-2">
-            <label htmlFor="name">Color</label>
+            <label htmlFor="name">Warna</label>
             <input
               type="text"
               name="color"
@@ -81,6 +82,26 @@ const AddProducts = () => {
               placeholder="Masukkan Warna"
               onChange={(e) => setValues({ ...values, color: e.target.value })}
             />
+          </div>
+          <div className="mb-2">
+            <label htmlFor="name">Kategori</label>
+            <select
+              name="categories"
+              className="form-control"
+              onChange={(e) =>
+                setValues({ ...values, categories: e.target.value })
+              }
+            >
+              <option value="">Pilih Kategori</option>
+              <option value="Batik">Batik</option>
+              <option value="Celana">Celana</option>
+              <option value="Gamis">Gamis</option>
+              <option value="Hijab">Hijab</option>
+              <option value="Kaos">Kaos</option>
+              <option value="Kemeja">Kemeja</option>
+              <option value="Kemeja">Pants</option>
+              <option value="Kemeja">Rok</option>
+            </select>
           </div>
           <div className="mb-2">
             <label htmlFor="name">Quantity</label>
